@@ -1,0 +1,218 @@
+@import 'variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-main;
+    background-color: $bg-color;
+    color: $text-dark;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-heading;
+}
+
+/* Header & Navigation Styling */
+.main-header {
+    background-color: $nav-bg;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: $box-shadow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    transition: all $transition-speed ease;
+
+    .logo h1 {
+        font-size: 1.8rem;
+        color: $primary-color;
+        letter-spacing: -0.5px;
+    }
+
+    .main-nav ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap: 2rem;
+
+        li a {
+            text-decoration: none;
+            color: $text-dark;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: color $transition-speed ease;
+
+            &:not(.btn-login)::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: $primary-color;
+                transition: width $transition-speed ease;
+            }
+
+            &:hover {
+                color: $primary-color;
+
+                &:not(.btn-login)::after {
+                    width: 100%;
+                }
+            }
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+            transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+            display: inline-block;
+
+            &:hover {
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba($primary-color, 0.4);
+            }
+        }
+    }
+}
+
+/* Layout */
+.content-wrapper {
+    flex: 1;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba($secondary-color, 0.1), rgba($primary-color, 0.1));
+    text-align: center;
+    padding: 6rem 1rem;
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: $text-dark;
+            line-height: 1.1;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .btn-primary {
+        display: inline-block;
+        background-color: $primary-color;
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        transition: transform $transition-speed, box-shadow $transition-speed;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba($primary-color, 0.3);
+        }
+    }
+}
+
+/* Featured / Cards */
+.featured {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: $text-dark;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .recipe-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: $box-shadow;
+        transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: $hover-shadow;
+        }
+
+        .placeholder-img {
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #eaeaea);
+        }
+
+        .card-info {
+            padding: 1.5rem;
+
+            h4 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                color: #777;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+/* Footer */
+.main-footer {
+    background-color: #2d3436;
+    color: #b2bec3;
+    text-align: center;
+    padding: 2rem;
+    margin-top: auto;
+
+    p {
+        font-size: 0.9rem;
+    }
+}

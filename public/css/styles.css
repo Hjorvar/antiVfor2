@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fdfdfd;
+  color: #2d3436;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Outfit", sans-serif;
+}
+
+/* Header & Navigation Styling */
+.main-header {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  transition: all 0.3s ease;
+}
+.main-header .logo h1 {
+  font-size: 1.8rem;
+  color: #ff6b6b;
+  letter-spacing: -0.5px;
+}
+.main-header .main-nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 2rem;
+}
+.main-header .main-nav ul li a {
+  text-decoration: none;
+  color: #2d3436;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.main-header .main-nav ul li a:not(.btn-login)::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #ff6b6b;
+  transition: width 0.3s ease;
+}
+.main-header .main-nav ul li a:hover {
+  color: #ff6b6b;
+}
+.main-header .main-nav ul li a:hover:not(.btn-login)::after {
+  width: 100%;
+}
+.main-header .main-nav ul .btn-login {
+  background: linear-gradient(135deg, #ff6b6b, #ff3838);
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+}
+.main-header .main-nav ul .btn-login:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Layout */
+.content-wrapper {
+  flex: 1;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+  text-align: center;
+  padding: 6rem 1rem;
+}
+.hero-section .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero-section .hero-content h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: #2d3436;
+  line-height: 1.1;
+}
+.hero-section .hero-content p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-section .btn-primary {
+  display: inline-block;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero-section .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* Featured / Cards */
+.featured {
+  padding: 4rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.featured h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #2d3436;
+}
+.featured .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.featured .recipe-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+.featured .recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.featured .recipe-card .placeholder-img {
+  height: 200px;
+  background: linear-gradient(45deg, #f0f0f0, #eaeaea);
+}
+.featured .recipe-card .card-info {
+  padding: 1.5rem;
+}
+.featured .recipe-card .card-info h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.featured .recipe-card .card-info p {
+  color: #777;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Footer */
+.main-footer {
+  background-color: #2d3436;
+  color: #b2bec3;
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
+}
+.main-footer p {
+  font-size: 0.9rem;
+}
+
+/*# sourceMappingURL=styles.css.map */
