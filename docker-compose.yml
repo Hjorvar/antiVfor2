@@ -1,0 +1,21 @@
+# Nýtt efni: Uppsetning á PostgreSQL grunninum í Docker
+
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: uppskriftavefur_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: uppskriftavefur
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Hér bindum við init.sql skrána okkar til að búa til töflur sjálfkrafa
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:
