@@ -19,6 +19,30 @@ const getHomePage = async (req, res) => {
     }
 };
 
+// NÝTT: Stýring fyrir staka uppskrift
+const getRecipeDetails = async (req, res) => {
+    try {
+        const id = req.params.id; // Sækjum ID úr slóðinni (URL)
+        const recipe = await recipeService.getRecipeById(id);
+
+        // Ef notandi slær inn ID sem er ekki til (t.d. /uppskriftir/999)
+        if (!recipe) {
+            return res.status(404).send('Úps! Uppskriftin fannst ekki.'); 
+            // Seinni tíma viðbót: res.render('404') ef þið smíðið villusíðu
+        }
+
+        // Senda gögnin í nýtt view
+        res.render('recipe-details', {
+            title: recipe.title,
+            recipe: recipe 
+        });
+    } catch (error) {
+        console.error('Villa við að sækja staka uppskrift:', error);
+        res.status(500).send('Kerfisvilla - Get ekki hlaðið uppskriftinni');
+    }
+};
+
 module.exports = {
-    getHomePage
+    getHomePage,
+    getRecipeDetails // NÝTT: Munið að exporta!
 };
