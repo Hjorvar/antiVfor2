@@ -42,7 +42,40 @@ const getRecipeDetails = async (req, res) => {
     }
 };
 
+// NÝTT: Sýnir EJS síðuna með HTML forminu
+const getAddRecipeForm = (req, res) => {
+    res.render('add-recipe', {
+        title: 'Bæta við uppskrift'
+    });
+};
+
+// NÝTT: Grípur POST request þegar formið er sent inn
+const createNewRecipe = async (req, res) => {
+    try {
+        // 1. Sækjum gögnin úr forminu (nafnið á breytunum kemur úr 'name' attribute í HTML)
+        // Til dæmis: <input name="title"> verður req.body.title
+        const { title, time_minutes, image_url } = req.body;
+
+        // 2. Einföld staðfesting (Validation) - Gakktu úr skugga um að titill sé til staðar
+        if (!title) {
+            return res.status(400).send('Titill uppskriftar má ekki vera tómur!');
+        }
+
+        // 3. Sendum gögnin niður í Service-lagið sem talar við gagnagrunninn
+        const newRecipe = await recipeService.createRecipe(title, time_minutes, image_url);
+
+        // 4. Áframsendum notandann (Redirect) á nýju uppskriftina eða á forsíðuna
+        res.redirect(`/uppskriftir/${newRecipe.id}`);
+        
+    } catch (error) {
+        console.error('Villa við að búa til uppskrift:', error);
+        res.status(500).send('Kerfisvilla - Tókst ekki að vista uppskrift');
+    }
+};
+
 module.exports = {
     getHomePage,
-    getRecipeDetails // NÝTT: Munið að exporta!
+    getRecipeDetails, // NÝTT: Munið að exporta!
+    getAddRecipeForm, // Exporta
+    createNewRecipe   // Exporta
 };

@@ -17,6 +17,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
+// NÝTT: Leyfir Express að lesa gögn úr HTML formum (application/x-www-form-urlencoded)
+app.use(express.urlencoded({ extended: true }));
+
 // Nýtt efni: Notum route-ið okkar í staðinn fyrir harðkóðað app.get hjá okkur
 app.use('/', recipeRoutes);
 

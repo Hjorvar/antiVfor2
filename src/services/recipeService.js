@@ -23,7 +23,23 @@ const getRecipeById = async (id) => {
     return result.rows[0];
 };
 
+// NÝTT: Fall til að búa til nýja uppskrift
+const createRecipe = async (title, timeMinutes, imageUrl) => {
+    // Notum $1, $2, $3 til að verjast SQL innspýtingum. 
+    // RETURNING * gerir það að verkum að gagnagrunnurinn skilar nýju röðinni (t.d. með nýja ID-inu)
+    const sql = `
+        INSERT INTO recipes (title, time_minutes, image_url) 
+        VALUES ($1, $2, $3) 
+        RETURNING *;
+    `;
+    const values = [title, timeMinutes, imageUrl];
+    
+    const result = await db.query(sql, values);
+    return result.rows[0]; // Skilum nýju uppskriftinni
+};
+
 module.exports = {
     getAllRecipes,
-    getRecipeById // NÝTT: Munið að exporta nýja fallinu!
+    getRecipeById, // NÝTT: Munið að exporta nýja fallinu!
+    createRecipe // Munið að exporta!
 };
